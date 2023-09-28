@@ -11,10 +11,4 @@
 |
 */
 
-// Route::middleware('auth:web')->prefix('blog')->group(function() {
-//     Route::get('/', 'BlogController@index');
-// });
-
-Route::prefix('blog')->group(function() {
-    Route::get('/', 'BlogController@index');
-});
+    Route::get('/', 'DashboardController@index');
