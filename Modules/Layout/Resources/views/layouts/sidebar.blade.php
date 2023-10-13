@@ -57,7 +57,27 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <!-- Dashboard -->
+        @foreach(getMenus() as $menu)
+        <li class="menu-item {{ request()->is($menu->url) ? 'active' : '' }}">
+            <a href="{{ $menu->menu_hassub == 1 ? 'javascript:void(0);' : url($menu->url) }}" class="menu-link {{ $menu->menu_hassub == 1 ? 'menu-toggle' : '' }}">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">{{ $menu->name }}</div>
+            </a>
+            @if(!$menu->subMenus->isEmpty())
+            <ul class="menu-sub">
+                @foreach ($menu->subMenus as $submenu)
+                <li class="menu-item {{ request()->is($submenu->url) ? 'active' : '' }}">
+                    <a href="{{ url($submenu->url) }}" class="menu-link">
+                        <div>{{ $submenu->name }}</div>
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+            @endif
+        </li>
+        @endforeach
+
+        {{-- <!-- Dashboard -->
         <li class="menu-item active">
             <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -99,7 +119,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>

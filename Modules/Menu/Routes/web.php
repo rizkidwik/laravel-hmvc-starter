@@ -11,11 +11,6 @@
 |
 */
 
-// Route::middleware('auth:web')->prefix('blog')->group(function() {
-//     Route::get('/', 'BlogController@index');
-// });
-
-Route::prefix('blog')->group(function() {
-    Route::get('/', 'BlogController@index');
-    Route::get('/table','BlogController@table')->name('blog.table');
+Route::prefix('menu')->group(function() {
+    Route::get('/', 'MenuController@index');
 });

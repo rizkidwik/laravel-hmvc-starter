@@ -1,36 +1,20 @@
 <?php
 
-namespace Modules\Blog\Http\Controllers;
+namespace Modules\Menu\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Blog\Entities\Blog;
-use Yajra\DataTables\Datatables;
-class BlogController extends Controller
+use Modules\Menu\Entities\Menu;
+class MenuController extends Controller
 {
-    public function table(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Blog::select('*');
-
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('blog::index');
+        return view('menu::index');
     }
 
     /**
@@ -39,7 +23,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog::create');
+        return view('menu::create');
     }
 
     /**
@@ -59,7 +43,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        return view('blog::show');
+        return view('menu::show');
     }
 
     /**
@@ -69,7 +53,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('blog::edit');
+        return view('menu::edit');
     }
 
     /**

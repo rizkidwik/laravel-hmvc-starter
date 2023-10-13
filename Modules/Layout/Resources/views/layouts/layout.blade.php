@@ -35,6 +35,13 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('custom/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
+
+    {{-- DataTables --}}
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+
     @stack('after-css')
 
     <!-- Helpers -->
@@ -211,7 +218,16 @@
     <script src="{{ asset('custom/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('custom/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('custom/assets/vendor/js/menu.js') }}"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('.menu-link').click(function() {
+                // Hapus kelas 'active' dari semua menu dan submenu
+                $('.menu-item').removeClass('active');
+                // Tambahkan kelas 'active' ke menu atau submenu yang diklik
+                $(this).closest('.menu-item').addClass('active');
+            });
+        });
+    </script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
@@ -220,7 +236,9 @@
     <!-- Main JS -->
     <script src="{{ asset('custom/assets/js/main.js') }}"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
