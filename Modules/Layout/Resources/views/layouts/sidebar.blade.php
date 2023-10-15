@@ -60,7 +60,7 @@
         @foreach(getMenus() as $menu)
         <li class="menu-item {{ request()->is($menu->url) ? 'active' : '' }}">
             <a href="{{ $menu->menu_hassub == 1 ? 'javascript:void(0);' : url($menu->url) }}" class="menu-link {{ $menu->menu_hassub == 1 ? 'menu-toggle' : '' }}">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <i class="menu-icon tf-icons {{ $menu->icon }}"></i>
                 <div data-i18n="Analytics">{{ $menu->name }}</div>
             </a>
             @if(!$menu->subMenus->isEmpty())

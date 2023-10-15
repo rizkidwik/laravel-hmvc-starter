@@ -5,6 +5,9 @@ namespace Modules\Auth\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Hash;
+use Session;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -75,5 +78,32 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login()
+    {
+        return view('auth::login');
+    }
+
+    public function register()
+    {
+        return view('auth::register');
+    }
+
+    public function doLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required'
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('/')
+                        ->withSuccess('Signed in');
+        }
+
+        return redirect("login")->withSuccess('Login details are not valid');
     }
 }

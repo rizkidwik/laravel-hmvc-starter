@@ -6,8 +6,24 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Menu\Entities\Menu;
+use Yajra\DataTables\Datatables;
+
 class MenuController extends Controller
 {
+    public function table(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Menu::select('*');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" class="edit-button edit btn btn-primary btn-sm">View </a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable

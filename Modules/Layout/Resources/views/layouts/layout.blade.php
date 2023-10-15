@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>@yield('title') | {{ env('APP_NAME') }} </title>
 
     <meta name="description" content="" />
 
@@ -163,7 +163,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                    @yield('content')
+                        @yield('content')
                     </div>
                     <!-- / Content -->
 
@@ -220,12 +220,12 @@
     <script src="{{ asset('custom/assets/vendor/js/menu.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.menu-link').click(function() {
-                // Hapus kelas 'active' dari semua menu dan submenu
-                $('.menu-item').removeClass('active');
-                // Tambahkan kelas 'active' ke menu atau submenu yang diklik
-                $(this).closest('.menu-item').addClass('active');
-            });
+            // Mencari submenu yang aktif
+            var activeSubmenu = $('.menu-sub .menu-item.active').parent();
+
+            // Menambahkan kelas active ke parent <li>
+            activeSubmenu.parent().addClass('active open');
+
         });
     </script>
     <!-- endbuild -->

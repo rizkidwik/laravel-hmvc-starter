@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Blog\Entities\Blog;
 use Yajra\DataTables\Datatables;
+
 class BlogController extends Controller
 {
     public function table(Request $request)
     {
         if ($request->ajax()) {
             $data = Blog::select('*');
-
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                    $btn = '<a href="javascript:void(0)" class="edit-button edit btn btn-primary btn-sm">View </a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

@@ -13,4 +13,5 @@
 
 Route::prefix('menu')->group(function() {
     Route::get('/', 'MenuController@index');
+    Route::get('table', 'MenuController@table')->name('menu.table');
 });
