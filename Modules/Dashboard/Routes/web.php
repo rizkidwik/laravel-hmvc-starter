@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'DashboardController@index')->middleware('auth');
+Route::get('/', 'DashboardController@index');
