@@ -100,10 +100,11 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/')
-                        ->withSuccess('Signed in');
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return back()->with('failed', 'The provided credentials do not match our records.');
     }
 }
