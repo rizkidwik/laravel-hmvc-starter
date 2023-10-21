@@ -10,7 +10,7 @@ class Blog extends Model
 {
     use HasFactory,HasUlids;
 
-    protected $fillable = [];
+    protected $fillable = ['title','description'];
 
     protected static function newFactory()
     {

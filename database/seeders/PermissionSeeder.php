@@ -45,24 +45,9 @@ class PermissionSeeder extends Seeder
         $superadminRole = Role::create(['name' => 'super-admin']);
         // gets all permissions via Gate::before rule
 
-        // create demo users
         $user = User::factory()->create([
-            'name' => 'Example user',
-            'email' => 'writer@qadrlabs.com',
-            'password' => bcrypt('12345678')
-        ]);
-        $user->assignRole($writerRole);
-
-        $user = User::factory()->create([
-            'name' => 'Example admin user',
-            'email' => 'admin@qadrlabs.com',
-            'password' => bcrypt('12345678')
-        ]);
-        $user->assignRole($adminRole);
-
-        $user = User::factory()->create([
-            'name' => 'Example superadmin user',
-            'email' => 'superadmin@qadrlabs.com',
+            'name' => ' superadmin user',
+            'email' => 'superadmin@mail.com',
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($superadminRole);

@@ -1,9 +1,13 @@
 @extends('layout::layouts.layout')
 
 @section('content')
+<div class="page-heading">
+    <h3>Menu</h3>
+</div>
+<div class="page-content">
 <div class="card">
     <div class="card-body">
-        <table class="table-responsive text-nowrap data-table" id="data-table">
+        <table class="table text-nowrap data-table" id="data-table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -17,6 +21,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 @endsection
 

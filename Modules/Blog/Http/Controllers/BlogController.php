@@ -13,11 +13,13 @@ class BlogController extends Controller
     public function table(Request $request)
     {
         if ($request->ajax()) {
+
             $data = Blog::select('*');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" class="edit-button edit btn btn-primary btn-sm">View </a>';
+                    $btn = '<a onclick="onEdit(`'.$row->id.'`)" class="edit-button edit btn btn-primary btn-sm me-2">Edit </a>
+                    <a onclick="onDelete(`'.$row->id.'`)" class="edit-button edit btn btn-danger btn-sm">Delete </a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -49,7 +51,13 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request->all());exit;
+         Blog::updateOrCreate([
+            'id' => $request->id
+        ],$request->all()
+        );
+
+        return response()->json(['success'=>'Blog saved successfully.']);
     }
 
     /**
@@ -59,7 +67,22 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        return view('blog::show');
+        try {
+            $data = Blog::findOrFail($id);
+            return response()->json([
+                'code' => 200,
+                'success' => true,
+                'message' => "Successfully get data!",
+                'data' => $data
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'code' => 404,
+                'success' => false,
+                'message' => $th
+            ]);
+        }
+
     }
 
     /**
@@ -90,6 +113,12 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Blog::findOrFail($id);
+        $data->delete();
+        return response()->json([
+            'code' => 200,
+            'success' => true,
+            'message'=> "Deleted data successfully"
+        ]);
     }
 }

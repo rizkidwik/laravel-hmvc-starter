@@ -19,16 +19,16 @@ class MenuDatabaseSeeder extends Seeder
         Menu::create([
             'name' => 'Dashboard',
             'code' => 'dashboard',
-            'url' => 'dashboard',
+            'url' => '/',
             'main_menu' => null,
-            'icon' => 'fa fa-home'
+            'icon' => 'bi bi-grid-fill'
         ]);
         $master = Menu::create([
             'name' => 'Master',
             'code' => 'master',
             'url' => '',
             'main_menu' => null,
-            'icon' => 'fa fa-home',
+            'icon' => 'bi bi-justify-left',
             'menu_hassub' => 1,
         ]);
         Menu::create([
@@ -36,7 +36,7 @@ class MenuDatabaseSeeder extends Seeder
             'code' => 'blog',
             'url' => 'blog',
             'main_menu' => $master->id,
-            'icon' => 'fa fa-home'
+            'icon' => 'bi bi-home'
         ]);
         // $this->call("OthersTableSeeder");
     }
