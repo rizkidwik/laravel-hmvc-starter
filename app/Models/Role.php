@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Modules\Menu\Entities\Menu;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Models\Role as SpatieRole;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
-class Role extends SpatieRole
+class Role extends Model
 {
-    use HasUlids;
+    use HasUlids, SoftDeletes;
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
@@ -21,4 +22,9 @@ class Role extends SpatieRole
     protected $casts = [
         'id' => 'string'
     ];
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'role_menus', 'role_id', 'menu_id');
+    }
 }

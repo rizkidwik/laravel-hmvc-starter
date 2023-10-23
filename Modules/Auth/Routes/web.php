@@ -11,8 +11,11 @@
 |
 */
 
-Route::middleware('guest')->group(function() {
+Route::middleware('guest')->group(function () {
     Route::get('/login', 'AuthController@login')->name('login');
     Route::post('/login', 'AuthController@doLogin');
     Route::get('/register', 'AuthController@register')->name('register');
 });
+
+Route::post('logout', 'AuthController@destroy')
+    ->name('logout')->middleware('auth');

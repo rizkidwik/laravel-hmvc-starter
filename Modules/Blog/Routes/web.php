@@ -17,10 +17,10 @@
 
 use Modules\Blog\Http\Controllers\BlogController;
 
-Route::prefix('blog')->group(function() {
+Route::prefix('blog')->group(function () {
     // Route::get('/', 'BlogController@index');
     // Route::post('/','BlogController@store')->name('blog.store');
-    Route::get('/table','BlogController@table')->name('blog.table');
+    Route::get('/table', 'BlogController@table')->name('blog.table');
 });
 
-Route::resource('blog', BlogController::class)->middleware('auth');
+Route::resource('blog', BlogController::class)->middleware(['auth', 'cekRole']);

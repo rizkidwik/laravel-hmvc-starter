@@ -3,5 +3,6 @@
     "Auth": true,
     "Layout": true,
     "Dashboard": true,
-    "Menu": true
+    "Menu": true,
+    "User": true
 }
